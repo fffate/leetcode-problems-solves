@@ -1,0 +1,47 @@
+Q:
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+
+Analysing
+--------------------------
+1）
+1.simply think using one traversal， but how to record the passed nums?
+2.use map to save the passed nums and their index 
+  so this will esay solve the one traversal 
+3.but the Time complexity wont't be O(n)， the act done by using map make that great.
+  how to find a way to use one traversal without using extra space and time consuming？？？
+
+2）
+if anyone have a good way tha 1) could write it here
+
+
+
+Solving
+--------------------------
+1)
+using the Analysing as 1)
+#code#
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        //int[] result = new int[2];
+        Map<Integer, Integer> map = new HashMap();
+        for(int i=0;i<nums.length;++i){
+            int other = target - nums[i];
+            if(map.containsKey(other)){
+                return new int[]{map.get(other), i};
+            }else{
+                map.put(nums[i], i);
+            }
+        }
+        return null;
+    }
+}
